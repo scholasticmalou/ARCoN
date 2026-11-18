@@ -1,0 +1,9 @@
+[
+  {
+    "file": "arcon_25000.pth",
+    "step": 25000,
+    "state_entries": 330,
+    "all_state_tensors_unchanged": true,
+    "bytes": 10190891
+  }
+]

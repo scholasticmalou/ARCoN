@@ -1,0 +1,38 @@
+{
+  "fields": [
+    "body_area",
+    "body_depth_m",
+    "green_global",
+    "edge_global",
+    "self_area",
+    "persistent10"
+  ],
+  "scales": {
+    "body_area": 0.001,
+    "body_depth_m": 2e-06,
+    "green_global": 0.1,
+    "edge_global": 0.1,
+    "self_area": 0.001,
+    "persistent10": 0.0001
+  },
+  "position_scale_m": 0.05,
+  "thresholds": {
+    "body_area": 0.01,
+    "body_depth_m": 5e-05,
+    "green_global": 0.311126983722081,
+    "edge_global": 0.2,
+    "self_area": 0.01,
+    "persistent10": 0.001
+  },
+  "weights": {
+    "B": 0.3333333333333333,
+    "M": 0.3333333333333333,
+    "S": 0.3333333333333333
+  },
+  "penalty_curve": "log2",
+  "penalty_strength": 1.0,
+  "domain": [
+    0.5,
+    2.0
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scope": "Paper comparison implementations and native inference settings; author weights obtained separately.",
+  "common_material": {
+    "density": 0.20022,
+    "lame_mu": 23600.0,
+    "lame_lambda": 44400.0,
+    "bending_coeff": 3.962e-05
+  },
+  "native_initial_ts_s": 0.3333333333333333,
+  "native_regular_ts_s": 0.03333333333333333,
+  "evaluation": "Export complete autoregressive trajectories; run measure.py and score.py without changing physical mesh, startup or native model computation.",
+  "baselines": {
+    "Fine15": {
+      "display_name": "MGN-style Fine15",
+      "source": "external/PB4U-GNet-main",
+      "checkpoint": "checkpoints/baselines/fine15.pth",
+      "config": "configs/fine15.yaml",
+      "adapter": "arcon.control.baseline_runtime.build_pb4u_case",
+      "identity": "Fine15 model released with Pb4U; not the original MeshGraphNets paper checkpoint."
+    },
+    "HOOD": {
+      "source": "external/PB4U-GNet-main",
+      "checkpoint": "checkpoints/baselines/hood.pth",
+      "config": "configs/hood.yaml",
+      "adapter": "arcon.control.baseline_runtime.build_pb4u_case"
+    },
+    "Pb4U": {
+      "source": "external/PB4U-GNet-main",
+      "checkpoint": "checkpoints/baselines/pb4u.pth",
+      "config": "configs/pb4u.yaml",
+      "adapter": "arcon.control.baseline_runtime.build_pb4u_case"
+    },
+    "ContourCraft": {
+      "source": "external/ContourCraft-main",
+      "checkpoint": "checkpoints/baselines/contourcraft.pth",
+      "config": "configs/contourcraft.yaml",
+      "adapter": "arcon.control.baseline_runtime.build_contourcraft_case"
+    },
+    "SENC": {
+      "source": "external/SENC",
+      "source_revision": "66e433f9668982aa7d79fc31fd2892c57f19e5ef",
+      "checkpoint": "checkpoints/baselines/senc_author_70k.pth",
+      "runner_name": "postcvpr_space_ext",
+      "config_file": "senc.yaml",
+      "adapter": "arcon.control.author_baselines.build_author_case"
+    },
+    "MCO": {
+      "source": "external/MCO",
+      "source_revision": "34e809cab655dd191536179d4a1d793a483d7ef0",
+      "checkpoint": "checkpoints/baselines/contourcraft_frictionless.pth",
+      "profile": "contourcraft_armBO_v21aTC_itmw_b0cap_ev2_walkfast",
+      "friction_mu": 0.5,
+      "adapter": "arcon.control.mco_baseline.build_common_case",
+      "identity": "Author frictionless-retrained ContourCraft predictor with the complete released MCO at inference."
+    }
+  },
+  "baseline_weights_included": false,
+  "metric_config": "configs/evaluation.json",
+  "source_licenses": {
+    "external/PB4U-GNet-main/LICENSE": "MIT",
+    "external/ContourCraft-main/LICENSE": "MIT",
+    "external/SENC/LICENSE": "MIT",
+    "external/MCO/LICENSE": "MIT"
+  }
+}

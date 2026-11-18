@@ -1,0 +1,129 @@
+--- a/src/build_bvh.cu
++++ b/src/build_bvh.cu
+@@ -391,7 +391,7 @@
+ 
+     // Construct the bvh tree
+     AT_DISPATCH_FLOATING_TYPES(
+-            triangles.type(), "bvh_tree_building", ([&] {
++            triangles.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -582,7 +582,7 @@
+ 
+     // Construct the bvh tree
+     AT_DISPATCH_FLOATING_TYPES(
+-            triangles.type(), "bvh_tree_building", ([&] {
++            triangles.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+--- a/src/collisions_continuous.cu
++++ b/src/collisions_continuous.cu
+@@ -848,7 +848,7 @@
+ 
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -1138,7 +1138,7 @@
+ 
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -1409,7 +1409,7 @@
+     thrust::fill(filtered_minimal_collision_idx_cnt.begin(), filtered_minimal_collision_idx_cnt.end(), 0);
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+--- a/src/collisions_impulses.cu
++++ b/src/collisions_impulses.cu
+@@ -1109,7 +1109,7 @@
+ 
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -1443,7 +1443,7 @@
+ 
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -1750,7 +1750,7 @@
+ 
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            triangles_tensor.type(), "bvh_tree_building", ([&] {
++            triangles_tensor.scalar_type(), "bvh_tree_building", ([&] {
+ //
+                 auto collisions_long_ptr = collision_tensor.data<long>();
+                 auto roots_float_ptr = roots_tensor.data<scalar_t>();
+--- a/src/collisions_static.cu
++++ b/src/collisions_static.cu
+@@ -231,7 +231,7 @@
+ 
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -643,7 +643,7 @@
+     thrust::fill(minimal_collision_idx_cnt.begin(), minimal_collision_idx_cnt.end(), 0);
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+@@ -813,7 +813,7 @@
+     thrust::fill(minimal_collision_idx_cnt.begin(), minimal_collision_idx_cnt.end(), 0);
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+--- a/src/icontour.cu
++++ b/src/icontour.cu
+@@ -141,7 +141,7 @@
+     thrust::fill(minimal_collision_idx_cnt.begin(), minimal_collision_idx_cnt.end(), 0);
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 
+--- a/src/proximity_static.cu
++++ b/src/proximity_static.cu
+@@ -536,7 +536,7 @@
+     thrust::fill(close_idx_cnt.begin(), close_idx_cnt.end(), 0);
+ 
+     AT_DISPATCH_FLOATING_TYPES(
+-            bboxes_tensor.type(), "bvh_tree_building", ([&] {
++            bboxes_tensor.scalar_type(), "bvh_tree_building", ([&] {
+                 thrust::device_vector <BVHNode<scalar_t>> leaf_nodes(num_triangles);
+                 thrust::device_vector <BVHNode<scalar_t>> internal_nodes(num_triangles - 1);
+ 

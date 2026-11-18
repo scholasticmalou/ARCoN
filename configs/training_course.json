@@ -1,0 +1,56 @@
+{
+  "name": "ARCoN paper training course",
+  "seed": 57,
+  "execution_policy": "outer_only",
+  "calibration": "assets/calibration.json",
+  "calibration_policy": "Reuse the frozen TRAIN self-contact scale used by the reported checkpoint; it is not recomputed from validation data.",
+  "normalizer_warmup_data_iterations": 99,
+  "rollout_curriculum_interval": 5000,
+  "maximum_physical_steps_per_window": 5,
+  "stages": [
+    {
+      "name": "backbone",
+      "start": 0,
+      "end": 12500,
+      "module": "backbone_stage",
+      "arm": "Cell-ScaleFixed",
+      "max_seconds": 21600
+    },
+    {
+      "name": "surface_contact",
+      "start": 12500,
+      "end": 15000,
+      "module": "contact_support_stage",
+      "arm": "Coarse-FaceFloor",
+      "max_seconds": 7200
+    },
+    {
+      "name": "contact_feedback",
+      "start": 15000,
+      "end": 20000,
+      "module": "contact_feedback_stage",
+      "arm": "Face-Early",
+      "max_seconds": 50400,
+      "loader_restart_steps": [
+        17500
+      ]
+    },
+    {
+      "name": "material_response",
+      "start": 20000,
+      "end": 22500,
+      "module": "material_stage",
+      "arm": "C",
+      "max_seconds": 14400
+    },
+    {
+      "name": "final_refinement",
+      "start": 22500,
+      "end": 25000,
+      "module": "material_stage",
+      "arm": "C",
+      "max_seconds": 14400
+    }
+  ],
+  "sampler_policy": "Restore saved RNG at each listed stage/restart boundary and create a new native TRAIN loader pass; a saved loader cursor is not assumed."
+}

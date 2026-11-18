@@ -1,0 +1,31 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+
+# Local data and generated runs (retain source modules under external/)
+/data/
+/datasets/
+/raw_data/
+/outputs/
+/results/
+/runs/
+/wandb/
+*.log
+
+# Only the final inference checkpoint is distributed
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+!/checkpoints/arcon_25000.pth
+
+# Workstation/editor files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

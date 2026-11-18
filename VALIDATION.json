@@ -1,0 +1,185 @@
+{
+  "validation_date": "2026-11-18",
+  "weights": [
+    {
+      "file": "arcon_25000.pth",
+      "step": 25000,
+      "state_entries": 330,
+      "all_state_tensors_unchanged": true,
+      "bytes": 10190891
+    }
+  ],
+  "frozen_score_verification": {
+    "trajectory_cases": 928,
+    "four_resolution_groups": 232,
+    "comparisons": 1160,
+    "maximum_difference_points": 7.105427357601002e-15
+  },
+  "complete_inference": [
+    {
+      "case": "07_02_tshirt_Lv.1",
+      "exit_code": 0,
+      "elapsed_seconds": 36.64437460899353,
+      "frames": 112,
+      "max_absolute_difference_m": 0.011921852827072144,
+      "rmse_m": 0.0001732794391410117,
+      "exactly_equal": false,
+      "model_source_modules": 41,
+      "all_model_sources_packaged": true
+    },
+    {
+      "case": "07_02_tshirt_Lv.2",
+      "exit_code": 0,
+      "elapsed_seconds": 42.176941871643066,
+      "frames": 112,
+      "max_absolute_difference_m": 0.018756866455078125,
+      "rmse_m": 0.0006803433342958997,
+      "exactly_equal": false,
+      "model_source_modules": 41,
+      "all_model_sources_packaged": true
+    }
+  ],
+  "original_entry_comparison": {
+    "case": "07_02_tshirt_Lv.2",
+    "frames": 112,
+    "max_absolute_difference_m": 0.0197756290435791,
+    "rmse_m": 0.000600027828198866,
+    "first_frame_max_difference_m": 5.960464477539063e-08,
+    "same_hardware": true,
+    "original_entry_vs_historical_rmse_m": 0.0005573949482860866,
+    "original_entry_vs_historical_max_m": 0.01732797920703888,
+    "original_entry_vs_historical_first_frame_max_m": 5.960464477539063e-08
+  },
+  "measurement_recomputation": [
+    {
+      "part": "geometry",
+      "exit_code": 0,
+      "elapsed_seconds": 5.532655239105225,
+      "maximum_differences": {
+        "penetration_fraction": 0.0,
+        "mean_penetration_depth": 0.0,
+        "green_strain_area_rms": 0.0,
+        "edge_stretch_rms": 0.0
+      }
+    },
+    {
+      "part": "self",
+      "exit_code": 0,
+      "elapsed_seconds": 3.727529287338257,
+      "maximum_differences": {
+        "affected_rest_area_fraction": 0.0,
+        "persistent10_area_fraction": 0.0
+      }
+    }
+  ],
+  "training_window": {
+    "state": "positive_check_complete",
+    "start_iteration": 22500,
+    "end_iteration": 22501,
+    "physical_step_forwards": 5,
+    "optimizer_updates": 5,
+    "paper_checkpoint_overwritten": false,
+    "scope": "Internal verification of the retained training entry; its full resume checkpoint is not distributed and is not needed for inference."
+  },
+  "runtime_environment_scope": "Checks used the recorded existing CUDA dependencies; a new clean-machine dependency installation was not performed.",
+  "numerical_replay_scope": "CUDA autoregressive replays are not bitwise identical. The original entry also differs from its historical saved trajectory; the observed replay errors are recorded above.",
+  "new_full_training_run": false,
+  "licensed_body_or_motion_assets_included": false,
+  "external_publication_performed": false,
+  "distributed_checkpoints": [
+    "arcon_25000.pth"
+  ],
+  "original_validation_scope": "Original numerical-source package checks; public ARCoN source-layout/training checks are recorded separately below.",
+  "source_layout_and_training_validation": {
+    "validation_date": "2026-11-18",
+    "status": "public_training_source_layout_and_evaluation_verified",
+    "model_source_layout": "arcon/models and arcon/control; inherited configuration namespaces retained for checkpoint compatibility",
+    "initialization_check": {
+      "start_iteration": 0,
+      "end_iteration": 102,
+      "optimizer_updates": 3,
+      "pretrained_checkpoint_used": false
+    },
+    "resume_check": {
+      "start_iteration": 102,
+      "end_iteration": 104,
+      "new_optimizer_updates": 2,
+      "model_optimizer_scheduler_normalizers_rng_restored": true,
+      "loader_cursor_restored": false
+    },
+    "stage_handoffs": [
+      {
+        "stage": "surface_contact",
+        "start_iteration": 12500,
+        "end_iteration": 12501,
+        "new_optimizer_updates": 3
+      },
+      {
+        "stage": "contact_feedback",
+        "start_iteration": 15000,
+        "end_iteration": 15001,
+        "new_optimizer_updates": 4
+      },
+      {
+        "stage": "contact_feedback_restart",
+        "start_iteration": 17500,
+        "end_iteration": 17501,
+        "new_optimizer_updates": 4
+      },
+      {
+        "stage": "material_response",
+        "start_iteration": 20000,
+        "end_iteration": 20001,
+        "new_optimizer_updates": 5
+      }
+    ],
+    "final_stage_check": {
+      "start_iteration": 22500,
+      "end_iteration": 22501,
+      "new_optimizer_updates": 5
+    },
+    "complete_inference": {
+      "frames": 112,
+      "complete_trajectory": true,
+      "model_source_modules": 54,
+      "all_sources_packaged": true
+    },
+    "saved_trained_checkpoint_inference": {
+      "frames": 2,
+      "scope": "diagnostic prefix from the newly saved material-stage checkpoint"
+    },
+    "measurement_recomputation": [
+      {
+        "part": "measurement_geometry",
+        "maximum_differences": {
+          "penetration_fraction": 0.0,
+          "mean_penetration_depth": 0.0,
+          "green_strain_area_rms": 0.0,
+          "edge_stretch_rms": 0.0
+        }
+      },
+      {
+        "part": "measurement_self",
+        "maximum_differences": {
+          "affected_rest_area_fraction": 0.0,
+          "persistent10_area_fraction": 0.0
+        }
+      }
+    ],
+    "frozen_score_verification": {
+      "comparisons": 1160,
+      "maximum_difference_points": 7.105427357601002e-15
+    },
+    "reported_checkpoint_bytes_unchanged": true,
+    "complete_replay_comparison": {
+      "first_frame_max_absolute_difference_m": 5.960464477539063e-08,
+      "rmse_m": 0.0006220517586955306,
+      "max_absolute_difference_m": 0.025644704699516296,
+      "reference": "historical saved 112-frame paper trajectory; CUDA replay is not bitwise identical"
+    },
+    "full_25k_retraining_performed": false,
+    "baseline_source_licenses_and_configuration_paths_checked": true,
+    "baseline_inference_rerun": false,
+    "environment_scope": "Executed with the recorded existing CUDA environments, not a clean-machine dependency installation."
+  }
+}

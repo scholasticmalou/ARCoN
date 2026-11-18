@@ -1,0 +1,144 @@
+{
+  "config": "pb4u",
+  "device": "cuda:0",
+  "dataloader": {
+    "num_workers": 8,
+    "batch_size": 1,
+    "pyg_data": true,
+    "dataset": {
+      "pb4u": {
+        "data_root": "data/vto_dataset/smpl_parameters",
+        "smpl_model": "smpl/SMPL_FEMALE.pkl",
+        "garment_dict_file": "garments_dict.pkl",
+        "split_path": "datasplits/train.csv",
+        "obstacle_dict_file": "smpl_aux.pkl",
+        "noise_scale": 0.003,
+        "lookup_steps": 5,
+        "pinned_verts": true,
+        "wholeseq": false,
+        "random_betas": true,
+        "use_betas_for_restpos": false,
+        "betas_scale": 3.0,
+        "restpos_scale_min": 1.0,
+        "restpos_scale_max": 1.0,
+        "n_coarse_levels": 0,
+        "separate_arms": false,
+        "zero_betas": false,
+        "button_edges": false,
+        "single_sequence_file": null,
+        "single_sequence_garment": null,
+        "betas_file": null
+      }
+    }
+  },
+  "experiment": {
+    "name": "ARCoN",
+    "save_checkpoint_every": 2500,
+    "n_epochs": 20000000,
+    "checkpoint_path": null,
+    "max_iter": 25000
+  },
+  "detect_anomaly": false,
+  "step_start": 0,
+  "runner": {
+    "pb4u": {
+      "optimizer": {
+        "lr": 5e-05,
+        "decay_rate": 0.5,
+        "decay_min": 0.0,
+        "decay_steps": 50000,
+        "step_start": 0
+      },
+      "material": {
+        "density_min": 0.0434,
+        "density_max": 0.7,
+        "lame_mu_min": 15909.0,
+        "lame_mu_max": 63636.0,
+        "lame_lambda_min": 3535.414406069427,
+        "lame_lambda_max": 93333.73508005822,
+        "bending_coeff_min": 6.370782056371576e-08,
+        "bending_coeff_max": 0.0013139737991266374,
+        "bending_multiplier": 1.0,
+        "density_override": null,
+        "lame_mu_override": null,
+        "lame_lambda_override": null,
+        "bending_coeff_override": null
+      },
+      "warmup_steps": 100,
+      "roll_init": 1,
+      "increase_roll_every": 5000,
+      "roll_max": 5,
+      "push_eps": 0.002,
+      "grad_clip": 1.0,
+      "overwrite_pos_every_step": false,
+      "initial_ts": 0.3333333333333333,
+      "regular_ts": 0.03333333333333333,
+      "device": "${device}",
+      "interval_len": 8,
+      "interval_count": 3
+    }
+  },
+  "criterions": {
+    "pb4u.mataug.stretching_energy": {
+      "weight": 1.0,
+      "thickness": 0.00047
+    },
+    "pb4u.inertia": {
+      "weight": 1.0
+    },
+    "pb4u.gravitational_energy": {
+      "weight": 1.0,
+      "g": 9.81,
+      "z_axis": 1
+    },
+    "pb4u.collision_penalty": {
+      "weight_start": 5000.0,
+      "weight_max": 5000.0,
+      "start_rampup_iteration": 50000,
+      "n_rampup_iterations": 100000,
+      "eps": 0.002
+    },
+    "pb4u.mataug.bending_energy": {
+      "weight": 1.0,
+      "return_average": true
+    },
+    "pb4u.friction_energy": {
+      "weight": 1.0,
+      "g": 9.81,
+      "mu": 0.5,
+      "friction_radius": 0.003
+    },
+    "pb4u.mataug.shared_cell_self_energy": {
+      "calibration_file": "assets/calibration.json",
+      "activation_step": 8000,
+      "ramp_steps": 4000
+    }
+  },
+  "model": {
+    "pb4u": {
+      "core_model": "adaptive_cell",
+      "output_size": 3,
+      "latent_size": 128,
+      "num_layers": 2,
+      "n_nodefeatures": 20,
+      "n_edgefeatures_mesh": 11,
+      "n_edgefeatures_coarse": 12,
+      "n_edgefeatures_world": 9,
+      "message_passing_steps": 15,
+      "l_base": 0.015,
+      "n_coarse_levels": 0,
+      "collision_radius": 0.03,
+      "k_world_edges": 1,
+      "architecture": "f,c0|f,c0|f,c0|d:c0,c1|c0,c1|c0,c1|d:c1|c1|c1|u:c0,c1|c0,c1|c0,c1|u:f,c0|f,c0|f,c0",
+      "device": "${device}",
+      "detach": true,
+      "save_at": 5,
+      "screen_arm": "N",
+      "cell_arm": "Cell-ScaleFixed",
+      "cell_patch_radius": 0.06,
+      "material_response_arm": "C",
+      "material_response_thickness": 0.00047
+    }
+  },
+  "run_dir": "outputs/train"
+}

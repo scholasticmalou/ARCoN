@@ -1,0 +1,16 @@
+# Python dependencies in addition to matching CUDA builds of torch, torch-geometric,
+# torch-scatter, pytorch3d, Warp and the separate cccollisions extension.
+numpy==2.4.3
+scipy==1.18.0
+networkx==3.6.1
+pandas==3.0.6
+omegaconf==2.3.1
+smplx==0.1.28
+trimesh==5.1.0
+einops==0.8.0
+PyYAML==6.0.3
+munch==4.0.0
+tqdm==4.70.0
+matplotlib
+termcolor
+multipledispatch
